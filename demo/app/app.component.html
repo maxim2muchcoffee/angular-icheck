@@ -1,20 +1,170 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="layout clear">
+  <div class="header">
+    <h1>super customized checkboxes and radio buttons for jQuery &amp; Zepto</h1>
+    <h3>iCheck <span>v1.0.2</span></h3>
+    <strong>@<a href="http://twitter.com/fronteed/">Fronteed</a></strong>
+  </div>
+  <div class="features">
+    <div class="arrows">
+      <div class="bottom" data-to="demo"></div>
+    </div>
+    <h2>Plugin features</h2>
+    <ul>
+      <li>
+        <strong>Identical inputs across different browsers and devices</strong> &mdash; both <span class="self" data-to="download">desktop and mobile</span>
+      </li>
+      <li>
+        <strong>Touch devices support</strong> &mdash; iOS, Android, BlackBerry, Windows Phone, Amazon Kindle
+      </li>
+      <li>
+        <strong>Keyboard accessible inputs</strong> &mdash; <span class="mark">Tab</span>, <span class="mark">Spacebar</span>, <span class="mark">Arrow up/down</span> and other shortcuts
+      </li>
+      <li>
+        <strong>Screenreader accessible inputs</strong> &mdash; <a href="https://developer.mozilla.org/en-US/docs/Accessibility/ARIA" target="blank">ARIA</a> attributes for VoiceOver and others
+      </li>
+      <li>
+        <strong>Customization freedom</strong> &mdash; use any HTML and CSS to style inputs (try <span class="self" data-to="skins">6 Retina-ready skins</span>)
+      </li>
+      <li>
+        <strong>jQuery and Zepto</strong> JavaScript libraries support from single file
+      </li>
+      <li>
+        <strong>Lightweight size</strong> &mdash; 1 kb gzipped
+      </li>
+      <li class="offset">
+        <strong class="self" data-to="options">32 options</strong> to customize checkboxes and radio buttons
+      </li>
+      <li>
+        <strong class="self" data-to="callbacks">11 callbacks</strong> to handle changes
+      </li>
+      <li>
+        <strong class="self" data-to="methods">9 methods</strong> to make changes programmatically
+      </li>
+      <li>
+        Saves changes to original inputs, <span class="self" data-to="init">works carefully</span> with any selectors
+      </li>
+    </ul>
+  </div>
+  <div class="social clear">
+    <ul class="left">
+      <li>
+        <a href="http://github.com/fronteed/iCheck/">Download latest version</a>
+      </li>
+    </ul>
+    <ul class="right local">
+      <li>
+        <a href="http://twitter.com/fronteed/">Follow @fronteed</a>
+      </li>
+      <li>
+        <a href="https://twitter.com/intent/tweet?text=Highly customizable checkboxes and radio buttons&amp;url=http://fronteed.com/iCheck/&amp;via=fronteed&amp;hashtags=jQuery,Zepto">Share on Twitter</a>
+      </li>
+      <li>
+        <a href="https://github.com/fronteed/iCheck">Star on GitHub</a>
+      </li>
+    </ul>
+  </div>
+  <div class="demo-holder">
+    <h2 class="demo-title">Demo</h2>
+    <div class="demo">
+      <div class="arrows">
+        <div class="top" data-to="features"></div>
+        <div class="bottom" data-to="skins"></div>
+      </div>
+      <div class="demo-list clear">
+        <ul>
+          <li>
+            <input icheck checkboxClass="icheckbox_square-blue" tabindex="1" type="checkbox" id="input-1">
+            <label for="input-1">Checkbox, <span>#input-1</span></label>
+          </li>
+          <li>
+            <input icheck checkboxClass="icheckbox_square-blue" tabindex="2" type="checkbox" id="input-2" checked>
+            <label for="input-2">Checkbox, <span>#input-2</span></label>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <input icheck radioClass="iradio_square-blue" tabindex="3" type="radio" id="input-3" name="demo-radio">
+            <label for="input-3">Radio button, <span>#input-3</span></label>
+          </li>
+          <li>
+            <input icheck radioClass="iradio_square-blue" tabindex="4" type="radio" id="input-4" name="demo-radio" checked>
+            <label for="input-4">Radio button, <span>#input-4</span></label>
+          </li>
+        </ul>
+          <script>
+          /*$(document).ready(function(){
+            var callbacks_list = $('.demo-callbacks ul');
+            $('.demo-list input').on('ifCreated ifClicked ifChanged ifChecked ifUnchecked ifDisabled ifEnabled ifDestroyed', function(event){
+              callbacks_list.prepend('<li><span>#' + this.id + '</span> is ' + event.type.replace('if', '').toLowerCase() + '</li>');
+            }).iCheck({
+              checkboxClass: 'icheckbox_square-blue',
+              radioClass: 'iradio_square-blue',
+              increaseArea: '20%'
+            });
+          });*/
+          </script>
+      </div>
+      <dl class="demo-methods">
+        <dt>
+          <span class="self do-check">Add <span class="mark">checked</span> state to 1 and 3 inputs</span>
+          <span class="code">
+            <span class="self">show code</span>
+          </span>
+        </dt>
+        <dd>
+<pre class="markup">
+$('#input-1, #input-3').iCheck('check');
+</pre>
+        </dd>
+        <dt>
+          <span class="self do-uncheck">Remove <span class="mark">checked</span> state from 1 and 3 inputs</span>
+          <span class="code">
+            <span class="self">show code</span>
+          </span>
+        </dt>
+        <dd>
+<pre class="markup">
+$('#input-1, #input-3').iCheck('uncheck');
+</pre>
+        </dd>
+        <dt>
+          <span class="self do-disable">Add <span class="mark">disabled</span> state to 2 and 4 inputs</span>
+          <span class="code">
+            <span class="self">show code</span>
+          </span>
+        </dt>
+        <dd>
+<pre class="markup">
+$('#input-2, #input-4').iCheck('disable');
+</pre>
+        </dd>
+        <dt>
+          <span class="self do-enable">Remove <span class="mark">disabled</span> state from 2 and 4 inputs</span>
+          <span class="code">
+            <span class="self">show code</span>
+          </span>
+        </dt>
+        <dd>
+<pre class="markup">
+$('#input-2, #input-4').iCheck('enable');
+</pre>
+        </dd>
+        <dt>
+          <span class="self do-destroy">Remove all traces of iCheck</span>
+          <span class="code">
+            <span class="self">show code</span>
+          </span>
+        </dt>
+        <dd>
+<pre class="markup">
+$('input').iCheck('destroy');
+</pre>
+        </dd>
+      </dl>
+      <div class="demo-callbacks">
+        <h2>Callbacks</h2>
+        <ul></ul>
+      </div>
+    </div>
+  </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
