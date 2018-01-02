@@ -1,6 +1,7 @@
 {
   "name": "ng4-icheck",
-  "version": "0.0.0",
+  "version": "1.0.2",
+  "description": "Angular4 iCheck module",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
