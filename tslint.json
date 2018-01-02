@@ -17,7 +17,7 @@
     "eofline": true,
     "forin": true,
     "import-blacklist": [
-      true,
+      false,
       "rxjs",
       "rxjs/Rx"
     ],
@@ -30,7 +30,7 @@
     "label-position": true,
     "max-line-length": [
       true,
-      140
+      255
     ],
     "member-access": false,
     "member-ordering": [
@@ -125,7 +125,7 @@
       "camelCase"
     ],
     "component-selector": [
-      true,
+      false,
       "element",
       "app",
       "kebab-case"
