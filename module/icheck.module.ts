@@ -1,14 +1,14 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ICheckComponent } from './icheck.component';
-import { ICheckService } from './icheck.service';
+import { ICheckRadioService } from './icheck-radio.service';
 import { ICheckConfigArgs, ICheckConfig } from './icheck-config';
 
 @NgModule({
   imports: [ CommonModule ],
   declarations: [ ICheckComponent ],
   exports: [ ICheckComponent ],
-  providers: [ ICheckService ]
+  providers: [ ICheckRadioService ]
 })
 export class ICheckModule {
 

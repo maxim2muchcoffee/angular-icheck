@@ -73,7 +73,7 @@ td{width:100%}
 .demo-methods dt .self:hover{color:#222}
 .demo-methods dt .code{position:absolute;right:0;bottom:18px;color:#777;}
 .demo-methods dt .code .self:hover{color:#444}
-.demo-methods dd{position:relative;display:none;margin:0;background:#fff;border:3px solid #ddd8ce;border-top:none;}
+.demo-methods dd{position:relative;margin:0;background:#fff;border:3px solid #ddd8ce;border-top:none;}
 .demo-methods dd:before{content:'';position:absolute;top:-13px;left:0;width:0;height:0;border:5px solid transparent;border-bottom-color:#ddd8ce;border-left-color:#ddd8ce}
 .demo-methods dd .markup{margin:0;color:#888;background:#f5f3ef;border:none;}
 .demo-methods dd .markup .comment{color:#aaa}

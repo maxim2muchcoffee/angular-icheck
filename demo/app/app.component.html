@@ -1,8 +1,7 @@
 <div class="layout clear">
   <div class="header">
-    <h1>super customized checkboxes and radio buttons for jQuery &amp; Zepto</h1>
+    <h1>super customized checkboxes and radio buttons for Angular4</h1>
     <h3>iCheck <span>v1.0.2</span></h3>
-    <strong>@<a href="http://twitter.com/fronteed/">Fronteed</a></strong>
   </div>
   <div class="features">
     <div class="arrows">
@@ -48,18 +47,12 @@
   <div class="social clear">
     <ul class="left">
       <li>
-        <a href="http://github.com/fronteed/iCheck/">Download latest version</a>
+        <a href="https://github.com/yiller/ng4-icheck">Download latest version</a>
       </li>
     </ul>
     <ul class="right local">
       <li>
-        <a href="http://twitter.com/fronteed/">Follow @fronteed</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/intent/tweet?text=Highly customizable checkboxes and radio buttons&amp;url=http://fronteed.com/iCheck/&amp;via=fronteed&amp;hashtags=jQuery,Zepto">Share on Twitter</a>
-      </li>
-      <li>
-        <a href="https://github.com/fronteed/iCheck">Star on GitHub</a>
+        <a href="https://github.com/yiller/ng4-icheck">Star on GitHub</a>
       </li>
     </ul>
   </div>
@@ -73,97 +66,107 @@
       <div class="demo-list clear">
         <ul>
           <li>
-            <input icheck iCheckClass="icheckbox_flat-blue" tabindex="1" type="checkbox" id="input-1">
-            <label for="input-1">Checkbox, <span>#input-1</span></label>
+            <label>
+              <input #input1 icheck tabindex="1" type="checkbox"
+              (ifClicked)="log($event, 'input-1')"
+              (ifChanged)="log($event, 'input-1')" 
+              (ifChecked)="log($event, 'input-1')"
+              (ifUnchecked)="log($event, 'input-1')"
+              (ifDisabled)="log($event, 'input-1')"
+              (ifEnabled)="log($event, 'input-1')"
+              >Checkbox, <span>#input-1</span>
+            </label>
           </li>
           <li>
-            <input icheck tabindex="2" type="checkbox" id="input-2" checked>
+            <input #input2 icheck tabindex="2" type="checkbox" checked
+            (ifClicked)="log($event, 'input-2')"
+            (ifChanged)="log($event, 'input-2')" 
+            (ifChecked)="log($event, 'input-2')"
+            (ifUnchecked)="log($event, 'input-2')"
+            (ifDisabled)="log($event, 'input-2')"
+            (ifEnabled)="log($event, 'input-2')"
+            >
             <label for="input-2">Checkbox, <span>#input-2</span></label>
           </li>
         </ul>
         <ul>
           <li>
-            <input icheck radioClass="iradio_square-blue" tabindex="3" type="radio" id="input-3" name="demo-radio">
+            <input #input3 icheck tabindex="3" type="radio" name="demo-radio"
+            (ifClicked)="log($event, 'input-3')"
+            (ifChanged)="log($event, 'input-3')" 
+            (ifChecked)="log($event, 'input-3')"
+            (ifUnchecked)="log($event, 'input-3')"
+            (ifDisabled)="log($event, 'input-3')"
+            (ifEnabled)="log($event, 'input-3')"
+            >
             <label for="input-3">Radio button, <span>#input-3</span></label>
           </li>
           <li>
-            <input icheck radioClass="iradio_square-blue" tabindex="4" type="radio" id="input-4" name="demo-radio" checked>
+            <input #input4 icheck tabindex="4" type="radio" name="demo-radio" checked 
+            (ifClicked)="log($event, 'input-4')"
+            (ifChanged)="log($event, 'input-4')" 
+            (ifChecked)="log($event, 'input-4')"
+            (ifUnchecked)="log($event, 'input-4')"
+            (ifDisabled)="log($event, 'input-4')"
+            (ifEnabled)="log($event, 'input-4')"
+            >
             <label for="input-4">Radio button, <span>#input-4</span></label>
           </li>
         </ul>
-          <script>
-          /*$(document).ready(function(){
-            var callbacks_list = $('.demo-callbacks ul');
-            $('.demo-list input').on('ifCreated ifClicked ifChanged ifChecked ifUnchecked ifDisabled ifEnabled ifDestroyed', function(event){
-              callbacks_list.prepend('<li><span>#' + this.id + '</span> is ' + event.type.replace('if', '').toLowerCase() + '</li>');
-            }).iCheck({
-              checkboxClass: 'icheckbox_square-blue',
-              radioClass: 'iradio_square-blue',
-              increaseArea: '20%'
-            });
-          });*/
-          </script>
       </div>
       <dl class="demo-methods">
         <dt>
-          <span class="self do-check">Add <span class="mark">checked</span> state to 1 and 3 inputs</span>
+          <span (click)="doCheck()" class="self do-check">Add <span class="mark">checked</span> state to 1 and 3 inputs</span>
           <span class="code">
-            <span class="self">show code</span>
+            <span (click)="fadeInOut('doCheck')" class="self">show code</span>
           </span>
         </dt>
-        <dd>
+        <dd [@fadeIn]="fadeIn.doCheck">
 <pre class="markup">
-$('#input-1, #input-3').iCheck('check');
+this.input1.check();
+this.input3.check();
 </pre>
         </dd>
         <dt>
-          <span class="self do-uncheck">Remove <span class="mark">checked</span> state from 1 and 3 inputs</span>
+          <span (click)="doUncheck()" class="self do-uncheck">Remove <span class="mark">checked</span> state from 1 and 3 inputs</span>
           <span class="code">
-            <span class="self">show code</span>
+            <span (click)="fadeInOut('doUncheck')" class="self">show code</span>
           </span>
         </dt>
-        <dd>
+        <dd [@fadeIn]="fadeIn.doUncheck">
 <pre class="markup">
-$('#input-1, #input-3').iCheck('uncheck');
+this.input1.uncheck();
+this.input3.uncheck();
 </pre>
         </dd>
         <dt>
-          <span class="self do-disable">Add <span class="mark">disabled</span> state to 2 and 4 inputs</span>
+          <span (click)="doDisable()" class="self do-disable">Add <span class="mark">disabled</span> state to 2 and 4 inputs</span>
           <span class="code">
-            <span class="self">show code</span>
+            <span (click)="fadeInOut('doDisable')" class="self">show code</span>
           </span>
         </dt>
-        <dd>
+        <dd [@fadeIn]="fadeIn.doDisable">
 <pre class="markup">
-$('#input-2, #input-4').iCheck('disable');
+this.input2.disable();
+this.input4.disable();
 </pre>
         </dd>
         <dt>
-          <span class="self do-enable">Remove <span class="mark">disabled</span> state from 2 and 4 inputs</span>
+          <span (click)="doEnable()" class="self do-enable">Remove <span class="mark">disabled</span> state from 2 and 4 inputs</span>
           <span class="code">
-            <span class="self">show code</span>
+            <span (click)="fadeInOut('doEnable')" class="self">show code</span>
           </span>
         </dt>
-        <dd>
+        <dd [@fadeIn]="fadeIn.doEnable">
 <pre class="markup">
-$('#input-2, #input-4').iCheck('enable');
-</pre>
-        </dd>
-        <dt>
-          <span class="self do-destroy">Remove all traces of iCheck</span>
-          <span class="code">
-            <span class="self">show code</span>
-          </span>
-        </dt>
-        <dd>
-<pre class="markup">
-$('input').iCheck('destroy');
+this.input2.enable();
+this.input4.enable();
 </pre>
         </dd>
       </dl>
       <div class="demo-callbacks">
         <h2>Callbacks</h2>
-        <ul></ul>
+        <ul #callbacks></ul>
       </div>
     </div>
   </div>
