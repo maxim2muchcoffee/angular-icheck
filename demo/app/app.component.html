@@ -3,59 +3,6 @@
     <h1>super customized checkboxes and radio buttons for Angular4</h1>
     <h3>iCheck <span>v1.0.2</span></h3>
   </div>
-  <div class="features">
-    <div class="arrows">
-      <div class="bottom" data-to="demo"></div>
-    </div>
-    <h2>Plugin features</h2>
-    <ul>
-      <li>
-        <strong>Identical inputs across different browsers and devices</strong> &mdash; both <span class="self" data-to="download">desktop and mobile</span>
-      </li>
-      <li>
-        <strong>Touch devices support</strong> &mdash; iOS, Android, BlackBerry, Windows Phone, Amazon Kindle
-      </li>
-      <li>
-        <strong>Keyboard accessible inputs</strong> &mdash; <span class="mark">Tab</span>, <span class="mark">Spacebar</span>, <span class="mark">Arrow up/down</span> and other shortcuts
-      </li>
-      <li>
-        <strong>Screenreader accessible inputs</strong> &mdash; <a href="https://developer.mozilla.org/en-US/docs/Accessibility/ARIA" target="blank">ARIA</a> attributes for VoiceOver and others
-      </li>
-      <li>
-        <strong>Customization freedom</strong> &mdash; use any HTML and CSS to style inputs (try <span class="self" data-to="skins">6 Retina-ready skins</span>)
-      </li>
-      <li>
-        <strong>jQuery and Zepto</strong> JavaScript libraries support from single file
-      </li>
-      <li>
-        <strong>Lightweight size</strong> &mdash; 1 kb gzipped
-      </li>
-      <li class="offset">
-        <strong class="self" data-to="options">32 options</strong> to customize checkboxes and radio buttons
-      </li>
-      <li>
-        <strong class="self" data-to="callbacks">11 callbacks</strong> to handle changes
-      </li>
-      <li>
-        <strong class="self" data-to="methods">9 methods</strong> to make changes programmatically
-      </li>
-      <li>
-        Saves changes to original inputs, <span class="self" data-to="init">works carefully</span> with any selectors
-      </li>
-    </ul>
-  </div>
-  <div class="social clear">
-    <ul class="left">
-      <li>
-        <a href="https://github.com/yiller/ng4-icheck">Download latest version</a>
-      </li>
-    </ul>
-    <ul class="right local">
-      <li>
-        <a href="https://github.com/yiller/ng4-icheck">Star on GitHub</a>
-      </li>
-    </ul>
-  </div>
   <div class="demo-holder">
     <h2 class="demo-title">Demo</h2>
     <div class="demo">
@@ -170,4 +117,488 @@ this.input4.enable();
       </div>
     </div>
   </div>
+  <div class="skins">
+    <h2>Skins</h2>
+    <!-- .skin-minimal -->
+    <div *ngFor="let scheme of skins" class="skin skin-{{ scheme.theme }}">
+      <div class="arrows">
+        <div class="top" data-to="demo"></div>
+        <div class="bottom" data-to="skin-square"></div>
+      </div>
+      <h3>{{ scheme.name }}</h3>
+      <dl class="clear">
+        <dd [class.selected]="scheme.tab === 'demo'">
+          <div class="skin-section">
+            <h4>Live</h4>
+            <ul class="list">
+              <li>
+                <input icheck [iCheckClass]="'icheckbox_' + scheme.color" tabindex="5" type="checkbox" id="minimal-checkbox-1">
+                <label for="minimal-checkbox-1">Checkbox 1</label>
+              </li>
+              <li>
+                <input icheck [iCheckClass]="'icheckbox_' + scheme.color" tabindex="6" type="checkbox" id="minimal-checkbox-2" checked>
+                <label for="minimal-checkbox-2">Checkbox 2</label>
+              </li>
+              <li>
+                <input icheck [iCheckClass]="'icheckbox_' + scheme.color" type="checkbox" id="minimal-checkbox-disabled" disabled>
+                <label for="minimal-checkbox-disabled">Disabled</label>
+              </li>
+              <li>
+                <input icheck [iCheckClass]="'icheckbox_' + scheme.color" type="checkbox" id="minimal-checkbox-disabled-checked" checked disabled>
+                <label for="minimal-checkbox-disabled-checked">Disabled &amp; checked</label>
+              </li>
+            </ul>
+            <ul class="list">
+              <li>
+                <input icheck [iCheckClass]="'iradio_' + scheme.color" tabindex="7" type="radio" id="minimal-radio-1" name="minimal-radio">
+                <label for="minimal-radio-1">Radio button 1</label>
+              </li>
+              <li>
+                <input icheck [iCheckClass]="'iradio_' + scheme.color" tabindex="8" type="radio" id="minimal-radio-2" name="minimal-radio" checked>
+                <label for="minimal-radio-2">Radio button 2</label>
+              </li>
+              <li>
+                <input icheck [iCheckClass]="'iradio_' + scheme.color" type="radio" id="minimal-radio-disabled" disabled>
+                <label for="minimal-radio-disabled">Disabled</label>
+              </li>
+              <li>
+                <input icheck [iCheckClass]="'iradio_' + scheme.color" type="radio" id="minimal-radio-disabled-checked" checked disabled>
+                <label for="minimal-radio-disabled-checked">Disabled &amp; checked</label>
+              </li>
+            </ul>
+            <div *ngIf="['polaris','futurico'].indexOf(scheme.theme) === -1" class="colors clear">
+              <strong>Color schemes</strong>
+              <ul>
+                <li *ngFor="let item of colors" 
+                  [class]="item.class" 
+                  [class.active]="(item.color.length == 0 && scheme.color == scheme.theme) || (scheme.color == scheme.theme + '-' + item.color)" 
+                  [title]="item.label"
+                  (click)="changeColor(scheme.theme, item.color)"
+                ></li>
+              </ul>
+            </div>
+          </div>
+          <div class="skin-section skin-states">
+            <h4>States</h4>
+            <ul *ngIf="scheme.theme === 'line'" class="list">
+              <li>
+                <div class="state icheckbox_line-blue">
+                  <div class="icheck_line-icon"></div>
+                  Normal
+                </div>
+              </li>
+              <li>
+                <div class="state icheckbox_line-blue hover">
+                  <div class="icheck_line-icon"></div>
+                  Hover
+                </div>
+              </li>
+              <li>
+                <div class="state icheckbox_line-blue checked">
+                  <div class="icheck_line-icon"></div>
+                  Checked
+                </div>
+              </li>
+              <li>
+                <div class="state icheckbox_line-blue disabled">
+                  <div class="icheck_line-icon"></div>
+                  Disabled
+                </div>
+              </li>
+              <li>
+                <div class="state icheckbox_line-blue checked disabled">
+                  <div class="icheck_line-icon"></div>
+                  Disabled &amp; checked
+                </div>
+              </li>
+            </ul>
+            <ul *ngIf="scheme.theme !== 'line'" class="list">
+              <li>
+                <div class="state icheckbox_{{ scheme.color }}"></div>
+                <div class="state iradio_{{ scheme.color }}"></div>
+                Normal
+              </li>
+              <li>
+                <div class="state icheckbox_{{ scheme.color }} hover"></div>
+                <div class="state iradio_{{ scheme.color }} hover"></div>
+                Hover
+              </li>
+              <li>
+                <div class="state icheckbox_{{ scheme.color }} checked"></div>
+                <div class="state iradio_{{ scheme.color }} checked"></div>
+                Checked
+              </li>
+              <li>
+                <div class="state icheckbox_{{ scheme.color }} disabled"></div>
+                <div class="state iradio_{{ scheme.color }} disabled"></div>
+                Disabled
+              </li>
+              <li>
+                <div class="state icheckbox_{{ scheme.color }} checked disabled"></div>
+                <div class="state iradio_{{ scheme.color }} checked disabled"></div>
+                Disabled &amp; checked
+              </li>
+            </ul>
+          </div>
+        </dd>
+        <dt (click)="changePanel(scheme.theme, 'demo')" [class.selected]="scheme.tab === 'demo'">Demo</dt>
+        <dd [class.selected]="scheme.tab === 'usage'">
+          <div class="skin-pre">
+            <p>
+              Make sure <a href="https://www.npmjs.com/package/icheck" target="blank">iCheck 1.0.2</a> is installed before the <span class="mark">ng4-icheck</span>.
+            </p>
+<pre class="markup" ngNonBindable>
+npm install icheck --save
+</pre>
+          </div>
+          <ol *ngIf="['polaris','futurico'].indexOf(scheme.theme) === -1" class="skin-usage">
+            <li>
+              <p>Install ng4-icheck and import <span class="mark">ICheckModule</span> to app.module.ts.</p>
+<pre class="markup" ngNonBindable>
+npm install ng4-icheck --save
+</pre>
+<pre class="markup">
+import {{'{'}}ICheckModule{{'}'}} from 'ng4-icheck';
+...
+@NgModule({{'{'}}
+  imports: [
+    ...
+    ICheckModule,
+    ...
+  ]
+{{'}'}})
+...
+</pre>
+            </li>
+            <li>
+              Choose a color scheme, there are 10 different styles available:
+              <div class="schemes clear">
+                <ul>
+                  <li><strong>Black</strong> &mdash; {{ scheme.theme }}.css</li>
+                  <li><strong>Red</strong> &mdash; red.css</li>
+                  <li><strong>Green</strong> &mdash; green.css</li>
+                  <li><strong>Blue</strong> &mdash; blue.css</li>
+                  <li><strong>Aero</strong> &mdash; aero.css</li>
+                </ul>
+                <ul>
+                  <li><strong>Grey</strong> &mdash; grey.css</li>
+                  <li><strong>Orange</strong> &mdash; orange.css</li>
+                  <li><strong>Yellow</strong> &mdash; yellow.css</li>
+                  <li><strong>Pink</strong> &mdash; pink.css</li>
+                  <li><strong>Purple</strong> &mdash; purple.css</li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <p>Link iCheck's stylesheets to your document, you can find them in <span class="mark">/node_modules/icheck/skins/{{ scheme.theme }}/</span> folder, 
+              add one in your html-document. Example for a <strong>Red</strong> color scheme:</p>
+<pre class="markup">
+  &lt;link href="node_modules/icheck/skins/{{ scheme.theme }}/red.css" rel="stylesheet">
+</pre>
+              <p>or import it in .angular-cli.json:</p>
+<pre class="markup">
+  ...
+  "styles": [
+    ...
+    "../node_modules/icheck/skins/{{ scheme.theme }}/red.css",
+    "styles.css"
+  ],
+  ...
+</pre>
+            </li>
+            <li>
+              <p>Add some checkboxes and radio buttons to your component's HTML (
+                <strong>NOTE</strong>: with <span class="mark">icheck</span> and <span class="mark">iCheckClass</span> attribute, 
+                example for <strong>Red</strong>
+              )</p>
+<pre class="markup">
+&lt;input icheck iCheckClass="icheckbox_{{ scheme.theme }}-red" type="checkbox">
+&lt;input icheck iCheckClass="icheckbox_{{ scheme.theme }}-red" type="checkbox" checked>
+&lt;input icheck iCheckClass="iradio_{{ scheme.theme }}-red" type="radio" name="demo">
+&lt;input icheck iCheckClass="iradio_{{ scheme.theme }}-red" type="radio" name="demo" checked>
+</pre>
+              <p>Also you can configure iCheck defaults:</p>
+<pre class="markup">
+import {{'{'}}ICheckModule{{'}'}} from 'ng4-icheck';
+...
+@NgModule({{'{'}}
+  imports: [
+    ...
+    ICheckModule.forRoot({{'{'}}
+      checkboxClass: 'icheckbox_{{ scheme.theme }}-red',
+      radioClass: 'iradio_{{ scheme.theme }}-red'
+    {{'}'}}),
+    ...
+  ]
+{{'}'}})
+...
+</pre>
+            </li>
+            <li>Done.</li>
+          </ol>
+          <ol *ngIf="['polaris','futurico'].indexOf(scheme.theme) !== -1" class="skin-usage">
+            <li>
+              <p>Install ng4-icheck and import <span class="mark">ICheckModule</span> to app.module.ts.</p>
+<pre class="markup" ngNonBindable>
+npm install ng4-icheck --save
+</pre>
+<pre class="markup">
+import {{'{'}}ICheckModule{{'}'}} from 'ng4-icheck';
+...
+@NgModule({{'{'}}
+  imports: [
+    ...
+    ICheckModule,
+    ...
+  ]
+{{'}'}})
+...
+</pre>
+            </li>
+            <li>
+              <p>Link iCheck's stylesheets to your document, you can find it in <span class="mark">/node_modules/icheck/skins/{{ scheme.theme }}/</span> folder, 
+                add it in your html-document. e.g.:</p>
+<pre class="markup">
+&lt;link href="node_modules/icheck/skins/{{ scheme.theme }}/{{ scheme.theme }}.css" rel="stylesheet">
+</pre>
+              <p>or import it in .angular-cli.json:</p>
+<pre class="markup">
+  ...
+  "styles": [
+    ...
+    "../node_modules/icheck/skins/{{ scheme.theme }}/{{ scheme.theme }}.css",
+    "styles.css"
+  ],
+  ...
+</pre>
+            </li>
+            <li>
+              <p>Add some checkboxes and radio buttons to your component's HTML (
+                <strong>NOTE</strong>: with <span class="mark">icheck</span> and <span class="mark">iCheckClass</span> attribute
+              ). e.g.:</p>
+<pre class="markup">
+&lt;input icheck iCheckClass="icheckbox_{{ scheme.theme }}" type="checkbox">
+&lt;input icheck iCheckClass="icheckbox_{{ scheme.theme }}" type="checkbox" checked>
+&lt;input icheck iCheckClass="iradio_{{ scheme.theme }}" type="radio" name="demo">
+&lt;input icheck iCheckClass="iradio_{{ scheme.theme }}" type="radio" name="demo" checked>
+</pre>
+              <p>Also you can configure iCheck defaults:</p>
+<pre class="markup">
+import {{'{'}}ICheckModule{{'}'}} from 'ng4-icheck';
+...
+@NgModule({{'{'}}
+  imports: [
+    ...
+    ICheckModule.forRoot({{'{'}}
+      checkboxClass: 'icheckbox_{{ scheme.theme }}',
+      radioClass: 'iradio_{{ scheme.theme }}'
+    {{'}'}}),
+    ...
+  ]
+{{'}'}})
+...
+</pre>
+              </li>
+              <li>Done.</li>
+            </ol>
+        </dd>
+        <dt (click)="changePanel(scheme.theme, 'usage')" [class.selected]="scheme.tab === 'usage'">Usage</dt>
+      </dl>
+    </div>
+    <div class="skins-info">
+      <p>All skins (except Line) are transparent, you may use them on any background.</p>
+      <p><a href="http://designmodo.com/square/?u=718" target="blank">Square</a>, <a href="http://designmodo.com/flat/?u=718" target="blank">Flat</a>, <a href="http://designmodo.com/?u=718" target="blank">Polaris</a> and <a href="http://designmodo.com/futuricopro/?u=718" target="blank">Futurico</a> skins are based on <a href="http://designmodo.com/shop/?u=718" target="blank">Designmodo's UI packs</a>.</p>
+      <p class="skins-banner">
+        <a href="http://designmodo.com/shop/?u=718" target="blank">Awesome UI packs</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="usage">
+    <div class="arrows">
+      <div class="top" data-to="skin-futurico"></div>
+      <div class="bottom" data-to="comparison"></div>
+    </div>
+    <h2>Simple usage</h2>
+    <div class="usage-inner">
+      <p>iCheck plugin works with checkboxes and radio buttons.</p>
+      <p class="offset">For this HTML:</p>
+<pre class="markup">
+&lt;label&gt;
+  &lt;input icheck type="checkbox" name="quux[1]" disabled&gt;
+  Foo
+&lt;/label&gt;
+        
+&lt;div&gt;
+  &lt;label for="baz[1]">Bar&lt;/label&gt;
+  &lt;input icheck type="radio" name="quux[2]" id="baz[1]" checked&gt;
+&lt;/div&gt;
+</pre>
+      <p><strong>By default, iCheck doesn't provide any CSS styles for wrapper divs</strong> (if you don't use <span class="self" data-to="skins">skins</span>).</p>
+      <h4 class="options">Module Options &amp; Attributes</h4>
+      <p>These options are default:</p>
+<pre class="markup">
+import {{'{'}}ICheckModule{{'}'}} from 'ng4-icheck';
+...
+@NgModule({{'{'}}
+  imports: [
+    ...
+    ICheckModule.forRoot({{'{'}}
+      <span class="comment">// 'checkbox' or 'radio' to style only checkboxes or radio buttons, both by default (<strong>ONLY Module</strong>)</span>
+      handle: '',
+
+      <span class="comment">// base class added to customized checkboxes</span>
+      checkboxClass: 'icheckbox',
+
+      <span class="comment">// base class added to customized radio buttons</span>
+      radioClass: 'iradio',
+
+      <span class="comment">// class added on checked state (input.checked = true)</span>
+      checkedClass: 'checked',
+
+      <span class="comment">// if not empty, used instead of 'checkedClass' option (input type specific)</span>
+      checkedCheckboxClass: '',
+      checkedRadioClass: '',
+
+      <span class="comment">// if not empty, added as class name on unchecked state (input.checked = false)</span>
+      uncheckedClass: '',
+
+      <span class="comment">// if not empty, used instead of 'uncheckedClass' option (input type specific)</span>
+      uncheckedCheckboxClass: '',
+      uncheckedRadioClass: '',
+
+      <span class="comment">// class added on disabled state (input.disabled = true)</span>
+      disabledClass: 'disabled',
+
+      <span class="comment">// if not empty, used instead of 'disabledClass' option (input type specific)</span>
+      disabledCheckboxClass: '',
+      disabledRadioClass: '',
+
+      <span class="comment">// if not empty, added as class name on enabled state (input.disabled = false)</span>
+      enabledClass: '',
+          
+      <span class="comment">// if not empty, used instead of 'enabledClass' option (input type specific)</span>
+      enabledCheckboxClass: '',
+      enabledRadioClass: '',
+
+      <span class="comment">// class added on <span class="self" data-to="indeterminate">indeterminate state</span> (input.indeterminate = true)</span>
+      indeterminateClass: 'indeterminate',
+          
+      <span class="comment">// if not empty, used instead of 'indeterminateClass' option (input type specific)</span>
+      indeterminateCheckboxClass: '',
+      indeterminateRadioClass: '',
+
+      <span class="comment">// if not empty, added as class name on determinate state (input.indeterminate = false)</span>
+      determinateClass: '',
+          
+      <span class="comment">// if not empty, used instead of 'determinateClass' option (input type specific)</span>
+      determinateCheckboxClass: '',
+      determinateRadioClass: '',
+          
+      <span class="comment">// class added on hover state (pointer is moved onto input)</span>
+      hoverClass: 'hover',
+          
+      <span class="comment">// class added on focus state (input has gained focus)</span>
+      focusClass: 'focus',
+          
+      <span class="comment">// class added on active state (mouse button is pressed on input)</span>
+      activeClass: 'active',
+          
+      <span class="comment">// adds hoverClass to customized input on label hover and labelHoverClass to label on input hover</span>
+      labelHover: true,
+          
+      <span class="comment">// class added to label if labelHover set to true</span>
+      labelHoverClass: 'hover',
+    {{'}'}}),
+    ...
+  ]
+{{'}'}})
+...
+</pre>
+      <p>There's no need to copy and paste all of them, you can just mention the ones you need:</p>
+<pre class="markup">
+import {{'{'}}ICheckModule{{'}'}} from 'ng4-icheck';
+...
+@NgModule({{'{'}}
+  imports: [
+    ...
+    ICheckModule.forRoot({{'{'}}
+      handle: 'checkbox',
+      checkboxClass: 'icheckbox_futurico'
+    {{'}'}}),
+    ...
+  ]
+{{'}'}})
+...
+</pre>
+      <p>You can choose any class names and slyle them as you want.</p>
+      <h4 class="callbacks">Callbacks</h4>
+      <p class="callbacks-info">iCheck provides plenty callbacks, which may be used to handle changes.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Callback name</th>
+            <td>When used</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>ifClicked</th>
+            <td>user clicked on a customized input or an assigned label</td>
+          </tr>
+          <tr>
+            <th>ifChanged</th>
+            <td>input's <span class="mark">checked</span>, <span class="mark">disabled</span> or <span class="mark">indeterminate</span> state is changed</td>
+          </tr>
+          <tr>
+            <th>ifChecked</th>
+            <td>input's state is changed to <span class="mark">checked</span></td>
+          </tr>
+          <tr>
+            <th>ifUnchecked</th>
+            <td><span class="mark">checked</span> state is removed</td>
+          </tr>
+          <tr>
+            <th>ifToggled</th>
+            <td>input's <span class="mark">checked</span> state is changed</td>
+          </tr>
+          <tr>
+            <th>ifDisabled</th>
+            <td>input's state is changed to <span class="mark">disabled</span></td>
+          </tr>
+          <tr>
+            <th>ifEnabled</th>
+            <td><span class="mark">disabled</span> state is removed</td>
+          </tr>
+          <tr>
+            <th>ifIndeterminate</th>
+            <td>input's state is changed to <span class="mark">indeterminate</span></td>
+          </tr>
+          <tr>
+            <th>ifDeterminate</th>
+            <td><span class="mark">indeterminate</span> state is removed</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Example for binding them to inputs:<p>
+<pre class="markup">
+  &lt;input icheck (ifClicked)="console.log($event)" type="checkbox"&gt;
+</pre>
+      <h4 class="methods">Methods</h4>
+      <p class="methods-info">These methods can be used to make changes programmatically:</p>
+      <p><span class="mark">this.iCheckComponentRef.check();</span> &mdash; change iCheckComponentRef's state to <span class="mark">checked</span></p>
+      <p><span class="mark">this.iCheckComponentRef.uncheck();</span> &mdash; remove <span class="mark">checked</span> state</p>
+      <p><span class="mark">this.iCheckComponentRef.toggle();</span> &mdash; toggle <span class="mark">checked</span> state</p>
+      <p><span class="mark">this.iCheckComponentRef.disable();</span> &mdash; change iCheckComponentRef's state to <span class="mark">disabled</span></p>
+      <p><span class="mark">this.iCheckComponentRef.enable();</span> &mdash; remove <span class="mark">disabled</span> state</p>
+      <p><span class="mark">this.iCheckComponentRef.indeterminate();</span> &mdash; change iCheckComponentRef's state to <span class="mark">indeterminate</span></p>
+      <p><span class="mark">this.iCheckComponentRef.determinate();</span> &mdash; remove <span class="mark">indeterminate</span> state</p>
+      <p><span class="mark">this.iCheckComponentRef.update();</span> &mdash; apply input changes, which were done outside the plugin</p>
+    </div>
+  </div>
+
+  <div class="download">
+    <a href="http://github.com/yiller/ng4-icheck/">Download plugin</a>
+  </div>
+  <div class="license">iCheck plugin is released under the <a href="http://en.wikipedia.org/wiki/MIT_License" target="blank">MIT License</a>. Feel free to use it in personal and commercial projects.</div>
 </div>

@@ -5,12 +5,6 @@ import { ICheckComponent } from '../../module/icheck.component';
 export const fadeIn = trigger('fadeIn', [
   state('out', style({ height: 0, opacity: 0 })),
   state('in', style({ height: '*', opacity: 1 })),
-  /*transition('out => in', [
-    animate(3000, keyframes([
-      style({ height: '*', opacity: 0, offset: 0 }), // 元素高度0，元素隐藏(透明度为0)，动画帧在0%
-      style({ height: '*', opacity: 1, offset: 1 }) // 200ms后高度自适应展开，元素展开(透明度为1)，动画帧在100%
-    ]))
-  ])*/
   transition('out <=> in', animate(300))
 ]);
 
@@ -35,6 +29,26 @@ export class AppComponent {
     doDisable: 'out',
     doEnable: 'out'
   };
+  private skins = [
+    { name: 'Minimal skin',  theme: 'minimal',  color: 'minimal',      tab: 'demo' },
+    { name: 'Square skin',   theme: 'square',   color: 'square-green', tab: 'demo' },
+    { name: 'Flat skin',     theme: 'flat',     color: 'flat-red',     tab: 'demo'},
+    { name: 'Line skin',     theme: 'line',     color: 'line-blue',    tab: 'demo' },
+    { name: 'Polaris skin',  theme: 'polaris',  color: 'polaris',      tab: 'demo' },
+    { name: 'Futurico skin', theme: 'futurico', color: 'futurico',     tab: 'demo' }
+  ];
+  private colors = [
+    { label: 'Black', class: '', color: '' },
+    { label: 'Red', class: 'red', color: 'red' },
+    { label: 'Green', class: 'green', color: 'green' },
+    { label: 'Blue', class: 'blue', color: 'blue' },
+    { label: 'Aero', class: 'aero', color: 'aero' },
+    { label: 'Grey', class: 'grey', color: 'grey' },
+    { label: 'Orange', class: 'orange', color: 'orange' },
+    { label: 'Yellow', class: 'yellow', color: 'yellow' },
+    { label: 'Pink', class: 'pink', color: 'pink' },
+    { label: 'Purple', class: 'purple', color: 'purple' }
+  ];
 
   constructor(
     private render2: Renderer2
@@ -72,6 +86,26 @@ export class AppComponent {
       return;
     }
     this.fadeIn[name] = this.fadeIn[name] === 'out' ? 'in' : 'out';
+  }
+
+  changeColor(theme, color) {
+    const scheme = this.skins.find((item) => item.theme === theme);
+    if (!scheme) {
+      return;
+    }
+    if (color.length === 0) {
+      scheme.color = theme;
+    } else {
+      scheme.color = theme + '-' + color;
+    }
+  }
+
+  changePanel(theme, tab) {
+    const scheme = this.skins.find((item) => item.theme === theme);
+    if (!scheme || scheme.tab === tab) {
+      return;
+    }
+    scheme.tab = tab;
   }
 
 }

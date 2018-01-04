@@ -1,4 +1,4 @@
-import { Component, Inject, Output, EventEmitter, Optional, OnInit, OnDestroy, Input, ElementRef, Renderer, Renderer2 } from '@angular/core';
+import { Component, Inject, Output, OnChanges, EventEmitter, Optional, OnInit, OnDestroy, Input, ElementRef, Renderer, Renderer2 } from '@angular/core';
 import { ICheckRadioService } from './icheck-radio.service';
 import { ICheckConfig, ICheckConfigArgs } from './icheck-config';
 import { Subscription } from 'rxjs/Rx';
@@ -13,7 +13,7 @@ interface ICheckEvent {
   selector: 'input[type="checkbox"][icheck], input[type="radio"][icheck]',
   template: ''
 })
-export class ICheckComponent implements OnInit, OnDestroy {
+export class ICheckComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() iCheckClass:  string;
   @Input() checkedClass: string;
@@ -100,6 +100,20 @@ export class ICheckComponent implements OnInit, OnDestroy {
     this._view();
     this._events();
     this._registry();
+  }
+
+  ngOnChanges(attributes) {
+    if (Object.keys(attributes).indexOf('iCheckClass') !== -1) {
+      if (attributes.iCheckClass.firstChange) {
+        return;
+      }
+      if (attributes.iCheckClass.previousValue) {
+        this.render2.removeClass(this._wrapper, attributes.iCheckClass.previousValue);
+      }
+      if (attributes.iCheckClass.currentValue) {
+        this.render2.addClass(this._wrapper, attributes.iCheckClass.currentValue);
+      }
+    }
   }
 
   ngOnDestroy() {
@@ -223,6 +237,14 @@ export class ICheckComponent implements OnInit, OnDestroy {
     });
   }
 
+  private _isTheme(theme) {
+    if (this._isRadio()) {
+      return this.iCheckClass.indexOf('iradio_' + theme.toLowerCase()) === 0;
+    } else {
+      return this.iCheckClass.indexOf('icheckbox_' + theme.toLowerCase()) === 0;
+    }
+  }
+
   private _view() {
     this._parentNode = this.render2.parentNode(this.el.nativeElement);
     // 取消label与input的关联
@@ -259,6 +281,28 @@ export class ICheckComponent implements OnInit, OnDestroy {
 
     this.render2.insertBefore(this._parentNode, this._wrapper, this.el.nativeElement);
     this.render2.appendChild(this._wrapper, this.el.nativeElement);
+    if (this._isTheme('line')) {
+      const icon = this.render2.createElement('div');
+      this.render2.addClass(icon, 'icheck_line-icon');
+      this.render2.appendChild(this._wrapper, icon);
+      let label = '';
+      if (this._parentNode.nodeName.toLowerCase() === 'label') {
+        this._parentNode.childNodes.forEach((el) => {
+          if (el.nodeType === 3) {
+            label += el.data;
+          }
+          this.render2.removeChild(this._parentNode, el);
+        });
+      }
+      this._parentNode.childNodes.forEach((el) => {
+        if (el.nodeType === 1 && el.nodeName.toLowerCase() === 'label') { // 删除所有兄弟 label 节点的 for 属性
+          label += el.innerHTML;
+          this.render2.removeChild(this._parentNode, el);
+        }
+      });
+      const text = this.render2.createText(label);
+      this.render2.appendChild(this._wrapper, text);
+    }
     this.render2.appendChild(this._wrapper, ins);
     this.update();
   }
