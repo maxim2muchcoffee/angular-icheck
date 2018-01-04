@@ -50,6 +50,7 @@ export class AppComponent {
     { label: 'Purple', class: 'purple', color: 'purple' }
   ];
 
+  @ViewChild('exampleCheckbox') iCheckComponentRef: ICheckComponent;
   constructor(
     private render2: Renderer2
   ) { }
