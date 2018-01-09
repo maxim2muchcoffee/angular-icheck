@@ -77,7 +77,7 @@ export class ICheckConfig implements ICheckConfigArgs {
   labelHover = true;
   labelHoverClass = '';
 
-  constructor(config: any = {}) {
+  constructor(config: ICheckConfigArgs = {}) {
     Object.assign(this, config);
   }
 
