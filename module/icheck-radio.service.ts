@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 interface IRadioGroup {
   name: string;
@@ -19,7 +20,7 @@ export class ICheckRadioService {
 
   constructor() { }
 
-  registry(name, value?: string): IRegistryResult {
+  registry(name, value?: string) {
     let group = this._getGroup(name);
     if (group) {
       value = value || group.values.length.toString();

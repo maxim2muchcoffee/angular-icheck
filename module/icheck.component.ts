@@ -1,7 +1,7 @@
 import { Component, Inject, Output, OnChanges, EventEmitter, Optional, OnInit, OnDestroy, Input, ElementRef, Renderer, Renderer2 } from '@angular/core';
 import { ICheckRadioService } from './icheck-radio.service';
 import { ICheckConfig, ICheckConfigArgs } from './icheck-config';
-import { Subscription } from 'rxjs/Rx';
+import { Subscription } from 'rxjs/Subscription';
 
 interface ICheckEvent {
   target: any;
@@ -44,56 +44,19 @@ export class ICheckComponent implements OnInit, OnChanges, OnDestroy {
   private _subscription: Subscription;
   private _name: string;
   private _value: string;
-  private _config: ICheckConfigArgs = {
-    handle:                     '',
-    checkboxClass:              'icheckbox',
-    radioClass:                 'iradio',
-
-    checkedClass:               'checked',
-    checkedCheckboxClass:       '',
-    checkedRadioClass:          '',
-
-    uncheckedClass:             '',
-    uncheckedCheckboxClass:     '',
-    uncheckedRadioClass:        '',
-
-    disabledClass:              'disabled',
-    disabledCheckboxClass:      '',
-    disabledRadioClass:         '',
-
-    enabledClass:               '',
-    enabledCheckboxClass:       '',
-    enabledRadioClass:          '',
-
-    indeterminateClass:         'indeterminate',
-    indeterminateCheckboxClass: '',
-    indeterminateRadioClass:    '',
-
-    determinateClass:           '',
-    determinateCheckboxClass:   '',
-    determinateRadioClass:      '',
-
-    hoverClass:                 'hover',
-    focusClass:                 'focus',
-    activeClass:                'active',
-
-    labelHover:                 true,
-    labelHoverClass:            'hover'
-  };
 
   constructor(
     private el: ElementRef,
     private render: Renderer,
     private render2: Renderer2,
     private service: ICheckRadioService,
-    @Inject(ICheckConfig) @Optional() options: ICheckConfigArgs
+    private _config: ICheckConfig
   ) {
     this._nodeType = this.el.nativeElement.type.toLowerCase() === 'checkbox' ? 'Checkbox' : 'Radio';
-    Object.assign(this._config, options);
   }
 
   ngOnInit() {
-    if (this._config.handle.length > 0 && this._config.handle !== this._nodeType.toLowerCase()) {
+    if (this._config.handle !== '' && this._config.handle !== this._nodeType.toLowerCase()) {
       return;
     }
     this._initialConfig();

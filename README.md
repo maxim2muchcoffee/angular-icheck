@@ -11,7 +11,7 @@ npm install icheck ng4-icheck --save
 ```javascript
 import { ICheckModule } from 'ng4-icheck';
 @NgModule({
-  imports: [ ICheckModule ]
+  imports: [ ICheckModule.forRoot() ]
 })
 ```
 

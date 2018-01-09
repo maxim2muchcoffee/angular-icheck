@@ -42,7 +42,42 @@ export interface ICheckConfigArgs {
 @Injectable()
 export class ICheckConfig implements ICheckConfigArgs {
 
-  constructor(config: ICheckConfigArgs = {}) {
+  handle: iCheckHandle = '';
+  checkboxClass = 'icheckbox';
+  radioClass = 'iradio';
+
+  checkedClass = 'checked';
+  checkedCheckboxClass = '';
+  checkedRadioClass = '';
+
+  uncheckedClass = '';
+  uncheckedCheckboxClass = '';
+  uncheckedRadioClass = '';
+
+  disabledClass = 'disabled';
+  disabledCheckboxClass = '';
+  disabledRadioClass = '';
+
+  enabledClass = '';
+  enabledCheckboxClass = '';
+  enabledRadioClass = '';
+
+  indeterminateClass = 'indeterminate';
+  indeterminateCheckboxClass = '';
+  indeterminateRadioClass = '';
+
+  determinateClass = '';
+  determinateCheckboxClass = '';
+  determinateRadioClass = '';
+
+  hoverClass = 'hover';
+  focusClass = '';
+  activeClass = '';
+
+  labelHover = true;
+  labelHoverClass = '';
+
+  constructor(config: any = {}) {
     Object.assign(this, config);
   }
 

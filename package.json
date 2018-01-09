@@ -1,17 +1,27 @@
 {
   "name": "ng4-icheck",
-  "version": "1.0.2",
+  "version": "1.0.6",
   "description": "Angular4 iCheck module",
   "license": "MIT",
+  "main": "index.js",
+  "keywords": [
+    "angular",
+    "icheck",
+    "ng2",
+    "ng4",
+    "ngx",
+    "angular2-icheck",
+    "angular4-icheck",
+    "ng2-icheck",
+    "ng4-icheck",
+    "ngx-icheck"
+  ],
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --prod",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "start": "ng serve --aot",
+    "packagr": "ng-packagr -p ng-package.json"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular/animations": "^5.0.0",
     "@angular/common": "^5.0.0",
@@ -43,6 +53,7 @@
     "karma-coverage-istanbul-reporter": "^1.2.1",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "ng-packagr": "^1.6.0",
     "protractor": "~5.1.2",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",

@@ -16,20 +16,14 @@ export const fadeIn = trigger('fadeIn', [
 })
 export class AppComponent {
 
-  @ViewChild('callbacks') callbacksRef: ElementRef;
-  @ViewChild('input1') input1: ICheckComponent;
-  @ViewChild('input2') input2: ICheckComponent;
-  @ViewChild('input3') input3: ICheckComponent;
-  @ViewChild('input4') input4: ICheckComponent;
-
-  private fadeInMarkup1 = 'out';
-  private fadeIn = {
+  fadeIn = {
     doCheck: 'out',
     doUncheck: 'out',
     doDisable: 'out',
     doEnable: 'out'
   };
-  private skins = [
+
+  skins = [
     { name: 'Minimal skin',  theme: 'minimal',  color: 'minimal',      tab: 'demo' },
     { name: 'Square skin',   theme: 'square',   color: 'square-green', tab: 'demo' },
     { name: 'Flat skin',     theme: 'flat',     color: 'flat-red',     tab: 'demo'},
@@ -37,6 +31,14 @@ export class AppComponent {
     { name: 'Polaris skin',  theme: 'polaris',  color: 'polaris',      tab: 'demo' },
     { name: 'Futurico skin', theme: 'futurico', color: 'futurico',     tab: 'demo' }
   ];
+
+  @ViewChild('callbacks') callbacksRef: ElementRef;
+  @ViewChild('input1') input1: ICheckComponent;
+  @ViewChild('input2') input2: ICheckComponent;
+  @ViewChild('input3') input3: ICheckComponent;
+  @ViewChild('input4') input4: ICheckComponent;
+
+  private fadeInMarkup1 = 'out';
   private colors = [
     { label: 'Black', class: '', color: '' },
     { label: 'Red', class: 'red', color: 'red' },
