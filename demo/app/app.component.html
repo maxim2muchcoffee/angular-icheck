@@ -13,16 +13,15 @@
       <div class="demo-list clear">
         <ul>
           <li>
-            <label>
-              <input #input1 icheck tabindex="1" type="checkbox"
-              (ifClicked)="log($event, 'input-1')"
-              (ifChanged)="log($event, 'input-1')" 
-              (ifChecked)="log($event, 'input-1')"
-              (ifUnchecked)="log($event, 'input-1')"
-              (ifDisabled)="log($event, 'input-1')"
-              (ifEnabled)="log($event, 'input-1')"
-              >Checkbox, <span>#input-1</span>
-            </label>
+            <input #input1 icheck tabindex="1" type="checkbox"
+            (ifClicked)="log($event, 'input-1')"
+            (ifChanged)="log($event, 'input-1')" 
+            (ifChecked)="log($event, 'input-1')"
+            (ifUnchecked)="log($event, 'input-1')"
+            (ifDisabled)="log($event, 'input-1')"
+            (ifEnabled)="log($event, 'input-1')"
+            >
+            <label>Checkbox, <span>#input-1</span></label>
           </li>
           <li>
             <input #input2 icheck tabindex="2" type="checkbox" checked
@@ -243,27 +242,19 @@ this.input4.enable();
         </dd>
         <dt (click)="changePanel(scheme.theme, 'demo')" [class.selected]="scheme.tab === 'demo'">Demo</dt>
         <dd [class.selected]="scheme.tab === 'usage'">
-          <div class="skin-pre">
-            <p>
-              Make sure <a href="https://www.npmjs.com/package/icheck" target="blank">iCheck 1.0.2</a> is installed before the <span class="mark">ng4-icheck</span>.
-            </p>
-<pre class="markup" ngNonBindable>
-npm install icheck --save
-</pre>
-          </div>
           <ol *ngIf="['polaris','futurico'].indexOf(scheme.theme) === -1" class="skin-usage">
             <li>
-              <p>Install ng4-icheck and import <span class="mark">ICheckModule</span> to app.module.ts.</p>
+              <p>Install angular4-icheck and import <span class="mark">ICheckModule</span> to app.module.ts.</p>
 <pre class="markup" ngNonBindable>
-npm install ng4-icheck --save
+npm install angular4-icheck --save
 </pre>
 <pre class="markup">
-import {{'{'}}ICheckModule{{'}'}} from 'ng4-icheck';
+import {{'{'}}ICheckModule{{'}'}} from 'angular4-icheck';
 ...
 @NgModule({{'{'}}
   imports: [
     ...
-    ICheckModule,
+    ICheckModule.forRoot(),
     ...
   ]
 {{'}'}})
@@ -290,17 +281,17 @@ import {{'{'}}ICheckModule{{'}'}} from 'ng4-icheck';
               </div>
             </li>
             <li>
-              <p>Link iCheck's stylesheets to your document, you can find them in <span class="mark">/node_modules/icheck/skins/{{ scheme.theme }}/</span> folder, 
+              <p>Link iCheck's stylesheets to your document, you can find them in <span class="mark">/node_modules/angular4-icheck/skins/{{ scheme.theme }}/</span> folder, 
               add one in your html-document. Example for a <strong>Red</strong> color scheme:</p>
 <pre class="markup">
-  &lt;link href="node_modules/icheck/skins/{{ scheme.theme }}/red.css" rel="stylesheet"&gt;
+  &lt;link href="node_modules/angular4-icheck/skins/{{ scheme.theme }}/red.css" rel="stylesheet"&gt;
 </pre>
               <p>or import it in .angular-cli.json:</p>
 <pre class="markup">
   ...
   "styles": [
     ...
-    "../node_modules/icheck/skins/{{ scheme.theme }}/red.css",
+    "../node_modules/angular4-icheck/skins/{{ scheme.theme }}/red.css",
     "styles.css"
   ],
   ...
@@ -319,7 +310,7 @@ import {{'{'}}ICheckModule{{'}'}} from 'ng4-icheck';
 </pre>
               <p>Also you can configure iCheck defaults:</p>
 <pre class="markup">
-import {{'{'}}ICheckModule{{'}'}} from 'ng4-icheck';
+import {{'{'}}ICheckModule{{'}'}} from 'angular4-icheck';
 ...
 @NgModule({{'{'}}
   imports: [
@@ -338,17 +329,17 @@ import {{'{'}}ICheckModule{{'}'}} from 'ng4-icheck';
           </ol>
           <ol *ngIf="['polaris','futurico'].indexOf(scheme.theme) !== -1" class="skin-usage">
             <li>
-              <p>Install ng4-icheck and import <span class="mark">ICheckModule</span> to app.module.ts.</p>
+              <p>Install angular4-icheck and import <span class="mark">ICheckModule</span> to app.module.ts.</p>
 <pre class="markup" ngNonBindable>
-npm install ng4-icheck --save
+npm install angular4-icheck --save
 </pre>
 <pre class="markup">
-import {{'{'}}ICheckModule{{'}'}} from 'ng4-icheck';
+import {{'{'}}ICheckModule{{'}'}} from 'angular4-icheck';
 ...
 @NgModule({{'{'}}
   imports: [
     ...
-    ICheckModule,
+    ICheckModule.forRoot(),
     ...
   ]
 {{'}'}})
@@ -356,17 +347,17 @@ import {{'{'}}ICheckModule{{'}'}} from 'ng4-icheck';
 </pre>
             </li>
             <li>
-              <p>Link iCheck's stylesheets to your document, you can find it in <span class="mark">/node_modules/icheck/skins/{{ scheme.theme }}/</span> folder, 
+              <p>Link iCheck's stylesheets to your document, you can find it in <span class="mark">/node_modules/angular4-icheck/skins/{{ scheme.theme }}/</span> folder, 
                 add it in your html-document. e.g.:</p>
 <pre class="markup">
-&lt;link href="node_modules/icheck/skins/{{ scheme.theme }}/{{ scheme.theme }}.css" rel="stylesheet">
+&lt;link href="node_modules/angular4-icheck/skins/{{ scheme.theme }}/{{ scheme.theme }}.css" rel="stylesheet">
 </pre>
               <p>or import it in .angular-cli.json:</p>
 <pre class="markup">
   ...
   "styles": [
     ...
-    "../node_modules/icheck/skins/{{ scheme.theme }}/{{ scheme.theme }}.css",
+    "../node_modules/angular4-icheck/skins/{{ scheme.theme }}/{{ scheme.theme }}.css",
     "styles.css"
   ],
   ...
@@ -384,7 +375,7 @@ import {{'{'}}ICheckModule{{'}'}} from 'ng4-icheck';
 </pre>
               <p>Also you can configure iCheck defaults:</p>
 <pre class="markup">
-import {{'{'}}ICheckModule{{'}'}} from 'ng4-icheck';
+import {{'{'}}ICheckModule{{'}'}} from 'angular4-icheck';
 ...
 @NgModule({{'{'}}
   imports: [
@@ -438,7 +429,7 @@ import {{'{'}}ICheckModule{{'}'}} from 'ng4-icheck';
       <h4 class="options">Module Options &amp; Attributes</h4>
       <p>These options are default:</p>
 <pre class="markup">
-import {{'{'}}ICheckModule{{'}'}} from 'ng4-icheck';
+import {{'{'}}ICheckModule{{'}'}} from 'angular4-icheck';
 ...
 @NgModule({{'{'}}
   imports: [
@@ -517,7 +508,7 @@ import {{'{'}}ICheckModule{{'}'}} from 'ng4-icheck';
 </pre>
       <p>There's no need to copy and paste all of them, you can just mention the ones you need:</p>
 <pre class="markup">
-import {{'{'}}ICheckModule{{'}'}} from 'ng4-icheck';
+import {{'{'}}ICheckModule{{'}'}} from 'angular4-icheck';
 ...
 @NgModule({{'{'}}
   imports: [
@@ -570,14 +561,6 @@ import {{'{'}}ICheckModule{{'}'}} from 'ng4-icheck';
             <th>ifEnabled</th>
             <td><span class="mark">disabled</span> state is removed</td>
           </tr>
-          <tr>
-            <th>ifIndeterminate</th>
-            <td>input's state is changed to <span class="mark">indeterminate</span></td>
-          </tr>
-          <tr>
-            <th>ifDeterminate</th>
-            <td><span class="mark">indeterminate</span> state is removed</td>
-          </tr>
         </tbody>
       </table>
       <p>Example for binding them to inputs:<p>
@@ -591,14 +574,12 @@ import {{'{'}}ICheckModule{{'}'}} from 'ng4-icheck';
       <p><span class="mark">this.iCheckComponentRef.toggle();</span> &mdash; toggle <span class="mark">checked</span> state</p>
       <p><span class="mark">this.iCheckComponentRef.disable();</span> &mdash; change iCheckComponentRef's state to <span class="mark">disabled</span></p>
       <p><span class="mark">this.iCheckComponentRef.enable();</span> &mdash; remove <span class="mark">disabled</span> state</p>
-      <p><span class="mark">this.iCheckComponentRef.indeterminate();</span> &mdash; change iCheckComponentRef's state to <span class="mark">indeterminate</span></p>
-      <p><span class="mark">this.iCheckComponentRef.determinate();</span> &mdash; remove <span class="mark">indeterminate</span> state</p>
       <p><span class="mark">this.iCheckComponentRef.update();</span> &mdash; apply input changes, which were done outside the plugin</p>
     </div>
   </div>
 
   <div class="download">
-    <a href="http://github.com/yiller/ng4-icheck/">Download plugin</a>
+    <a href="http://github.com/yiller/angular4-icheck/">Download plugin</a>
   </div>
   <div class="license">iCheck plugin is released under the <a href="http://en.wikipedia.org/wiki/MIT_License" target="blank">MIT License</a>. Feel free to use it in personal and commercial projects.</div>
 </div>

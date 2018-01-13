@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
-import { ICheckComponent } from '../../module/icheck.component';
+import { ICheckComponent } from '../../module/components/icheck.component';
 
 export const fadeIn = trigger('fadeIn', [
   state('out', style({ height: 0, opacity: 0 })),

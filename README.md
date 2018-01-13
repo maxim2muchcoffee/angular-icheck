@@ -1,28 +1,28 @@
-# ng4-icheck
+# angular4-icheck
 本组件基于 [iCheck v1.0.2](`https://github.com/fronteed/iCheck`) 创建，适用于 Angular2 及以上版本。
 
 # Installation
-* 通过 NPM 安装 ng4-icheck 以及依赖包
+* 通过 NPM 安装 angular4-icheck 以及依赖包
 ```bash
-npm install icheck ng4-icheck --save
+npm install angular4-icheck --save
 ```
 
 * 导入 ICheckModule 模块到项目的 app.module.ts
 ```javascript
-import { ICheckModule } from 'ng4-icheck';
+import { ICheckModule } from 'angular4-icheck';
 @NgModule({
   imports: [ ICheckModule.forRoot() ]
 })
 ```
 
-* 引入 iCheck 的层叠样式表到项目中，你可以在 /node_modules/icheck/skins/ 文件夹中找到所有的样式表，将其中你需要的样式表加入到你的HTML文档中。 例如加载红色扁平风格的样式：
+* 引入 iCheck 的层叠样式表到项目中，你可以在 /node_modules/angular4-icheck/skins/ 文件夹中找到所有的样式表，将其中你需要的样式表加入到你的HTML文档中。 例如加载红色扁平风格的样式：
 ```html
-<link href="node_modules/icheck/skins/flat/red.css" rel="stylesheet">
+<link href="node_modules/angular4-icheck/skins/flat/red.css" rel="stylesheet">
 ```
 * 你也可以选择将他们加到 .angular-cli.json 文件的 styles 段：
 ```javascript
   "styles": [
-    "../node_modules/icheck/skins/flat/red.css"
+    "../node_modules/angular4-icheck/skins/flat/red.css"
   ],
 ```
 
@@ -36,7 +36,7 @@ import { ICheckModule } from 'ng4-icheck';
 ```
 * 为了简化HTML，你可以在 ICheckModule 中进行全局配置
 ```javascript
-import { ICheckModule } from 'ng4-icheck';
+import { ICheckModule } from 'angular4-icheck';
 @NgModule({
   imports: [ ICheckModule.forRoot({
     checkboxClass: 'icheckbox_flat-red',
@@ -72,24 +72,26 @@ import { ICheckModule } from 'ng4-icheck';
 - ifChanged: 当 iCheck 在 checked / unchecked / disabled / enabled 状态变更时触发
 - ifChecked: 当 iCheck 从 unchecked 变更为 checked 状态时触发
 - ifUnchecked: 当 iCheck 从 checked 变更为 unchecked 状态时触发
+- ifToggled: 当 iCheck 的 checked 状态发生变更时触发
 - ifDisabled: 当 iCheck 从 enabled 变更为 disabled 状态时触发
 - ifEnabled: 当 iCheck 从 disabled 变更为 enabled 状态时触发
 * 应用回调用举例：
 ```html
-<input icheck type="checkbox" (ifChecked)="console.log($event)">
+<input icheck type="checkbox" (ifToggled)="log($event)">
 ```
 
 ## Methods
 * 组件支持的外部方法调用
 - check(): iCheck 状态变更为 checked
 - uncheck(): iCheck 状态变更为 unchecked
+- toggle(): iCheck 的 checked 状态反转
 - disable(): iCheck 状态变更为 diabled
 - enable(): iCheck 状态变更为 enable
 - update(): 根据单选或复选框的当前状态更新模板
 * 方法调用举例：
 ```javascript
 import { Component, AfterViewInit, ViewChild } from '@angular/core';
-import { ICheckComponent } from 'ng4-icheck';
+import { ICheckComponent } from 'angular4-icheck';
 
 @Component({
   select: 'app-root',
@@ -97,10 +99,7 @@ import { ICheckComponent } from 'ng4-icheck';
   <label>
     <input #exampleCheckbox icheck iCheckClass="icheckbox_flat-red" (ifChecked)="log($event)" type="checkbox">
     Example Checkbox
-  </label>`,
-  styles: [`
-    label { padding-left: 30px; }
-  `]
+  </label>`
 })
 export class AppComponent implements AfterViewInit {
 
@@ -119,7 +118,7 @@ export class AppComponent implements AfterViewInit {
 
 ## Feedback
 
-Please [leave your feedback](https://github.com/yiller/ng4-icheck/issues) if you have noticed any issues or have a feature request.
+Please [leave your feedback](https://github.com/yiller/angular4-icheck/issues) if you have noticed any issues or have a feature request.
 
 ## License
 

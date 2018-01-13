@@ -39,7 +39,6 @@ export interface ICheckConfigArgs {
   labelHoverClass?: string;
 }
 
-@Injectable()
 export class ICheckConfig implements ICheckConfigArgs {
 
   handle: iCheckHandle = '';

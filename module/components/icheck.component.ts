@@ -1,6 +1,6 @@
 import { Component, Inject, Output, OnChanges, EventEmitter, Optional, OnInit, OnDestroy, Input, ElementRef, Renderer, Renderer2 } from '@angular/core';
-import { ICheckRadioService } from './icheck-radio.service';
-import { ICheckConfig, ICheckConfigArgs } from './icheck-config';
+import { ICheckRadioService } from '../services/icheck-radio.service';
+import { ICheckConfig, ICheckConfigArgs } from '../icheck.config';
 import { Subscription } from 'rxjs/Subscription';
 
 interface ICheckEvent {
@@ -50,7 +50,7 @@ export class ICheckComponent implements OnInit, OnChanges, OnDestroy {
     private render: Renderer,
     private render2: Renderer2,
     private service: ICheckRadioService,
-    private _config: ICheckConfig
+    @Inject(ICheckConfig) private _config: ICheckConfig
   ) {
     this._nodeType = this.el.nativeElement.type.toLowerCase() === 'checkbox' ? 'Checkbox' : 'Radio';
   }
@@ -90,8 +90,9 @@ export class ICheckComponent implements OnInit, OnChanges, OnDestroy {
     if (this._isRadio() && this._name && this._value) {
       this.service.trigger(this._name, this._value);
     }
-    this._emit('ifChanged');
     this.el.nativeElement.checked = true;
+    this._emit('ifChanged');
+    this._emit('ifToggled');
     this._emit('ifChecked');
     this.update();
   }
@@ -100,22 +101,27 @@ export class ICheckComponent implements OnInit, OnChanges, OnDestroy {
     if (!this.el.nativeElement.checked) {
       return;
     }
-    this._emit('ifChanged');
     this.el.nativeElement.checked = false;
+    this._emit('ifChanged');
+    this._emit('ifToggled');
     this._emit('ifUnchecked');
     this.update();
   }
 
   toggle() {
-
+    if (this.el.nativeElement.checked) {
+      this.uncheck();
+    } else {
+      this.check();
+    }
   }
 
   disable() {
     if (this.el.nativeElement.disabled) {
       return;
     }
-    this._emit('ifChanged');
     this.el.nativeElement.disabled = true;
+    this._emit('ifChanged');
     this._emit('ifDisabled');
     this.update();
   }
@@ -124,8 +130,8 @@ export class ICheckComponent implements OnInit, OnChanges, OnDestroy {
     if (!this.el.nativeElement.disabled) {
       return;
     }
-    this._emit('ifChanged');
     this.el.nativeElement.disabled = false;
+    this._emit('ifChanged');
     this._emit('ifEnabled');
     this.update();
   }
@@ -214,6 +220,8 @@ export class ICheckComponent implements OnInit, OnChanges, OnDestroy {
     if (this._parentNode.nodeName.toLowerCase() === 'label') { // 父节点是 label 则赋值 for 属性为空
       this._parentNode.setAttribute('for', '');
     }
+    this.render2.setStyle(this._parentNode, 'position', 'relative');
+    this.render2.setStyle(this._parentNode, 'padding-left', '35px');
     this._parentNode.childNodes.forEach((el) => {
       if (el.nodeType === 1 && el.nodeName.toLowerCase() === 'label') { // 删除所有兄弟 label 节点的 for 属性
         el.removeAttribute('for');
@@ -275,7 +283,7 @@ export class ICheckComponent implements OnInit, OnChanges, OnDestroy {
       return;
     }
     this[eventName].emit({
-      target: this.el.nativeElement,
+      target: this.el,
       type: eventName,
       timestamp: Date.now()
     });
