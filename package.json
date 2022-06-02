@@ -5,10 +5,9 @@
   "license": "MIT",
   "main": "index.js",
   "files": [
-    "module/*.d.ts",
-    "module/components/*.d.ts",
-    "module/services/*.d.ts",
+    "module/**",
     "skins/**",
+    "*.ts",
     "*.d.ts",
     "*.js",
     "*.js.map",
