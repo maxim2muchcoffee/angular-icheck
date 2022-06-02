@@ -1,6 +1,6 @@
-import { Component, Inject, Output, OnChanges, EventEmitter, Optional, OnInit, OnDestroy, Input, ElementRef, Renderer, Renderer2 } from '@angular/core';
+import { Component, Inject, Output, OnChanges, EventEmitter, OnInit, OnDestroy, Input, ElementRef, Renderer2 } from '@angular/core';
 import { ICheckRadioService } from '../services/icheck-radio.service';
-import { ICheckConfig, ICheckConfigArgs } from '../icheck.config';
+import { ICheckConfig } from '../icheck.config';
 import { Subscription } from 'rxjs/Subscription';
 
 interface ICheckEvent {
@@ -47,7 +47,7 @@ export class ICheckComponent implements OnInit, OnChanges, OnDestroy {
 
   constructor(
     private el: ElementRef,
-    private render: Renderer,
+
     private render2: Renderer2,
     private service: ICheckRadioService,
     @Inject(ICheckConfig) private _config: ICheckConfig
@@ -290,7 +290,7 @@ export class ICheckComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   private _events() {
-    this.render.listen(this._parentNode, 'mouseenter', (e) => {
+    this.render2.listen(this._parentNode, 'mouseenter', (e) => {
       e.stopPropagation();
       setTimeout(() => {
         if (this._config.hoverClass) {
@@ -309,7 +309,7 @@ export class ICheckComponent implements OnInit, OnChanges, OnDestroy {
       }, 50);
     });
 
-    this.render.listen(this._parentNode, 'mouseleave', (e) => {
+    this.render2.listen(this._parentNode, 'mouseleave', (e) => {
       e.stopPropagation();
       setTimeout(() => {
         if (this._config.hoverClass) {
@@ -328,7 +328,7 @@ export class ICheckComponent implements OnInit, OnChanges, OnDestroy {
       }, 50);
     });
 
-    this.render.listen(this._parentNode, 'click', (e) => {
+    this.render2.listen(this._parentNode, 'click', (e) => {
       e.stopPropagation();
       if (this.el.nativeElement.disabled) {
         return;

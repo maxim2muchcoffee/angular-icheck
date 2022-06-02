@@ -18,6 +18,7 @@ export function factoryICheckConfig(config: ICheckConfigArgs) {
 })
 export class ICheckModule {
 
+  // @ts-ignore
   static forRoot(config: ICheckConfigArgs = {}): ModuleWithProviders {
     return {
       ngModule: ICheckModule,
